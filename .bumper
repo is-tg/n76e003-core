@@ -1,0 +1,37 @@
+# set ft=markdown for okish TS syntax highlighting
+src : package_nuvoton_index.json
+
+version : 0.4.5
+download-url : https://github.com/is-tg/n76e003-core/releases/download
+
+core-url : `download_url`/v`version`/n76e003-core.tar.xz
+tool-url : `download_url`/v`version`/tools-bundle.tar.xz
+
+raw-core-hash : sha256 ar/n76e003-core.tar.xz
+core-hash : SHA-256:`raw-core-hash`
+core-size : bytes ar/n76e003-core.tar.xz
+
+raw-tool-hash : sha256 ar/tools-bundle.tar.xz
+tool-hash : SHA-256:`raw-tool-hash`
+tool-size : bytes ar/tools-bundle.tar.xz
+
+# core
+src.packages.0.platforms.0.version        : `version`
+src.packages.0.platforms.0.url            : `core-url`
+src.packages.0.platforms.0.checksum       : `core-hash`
+src.packages.0.platforms.0.size           : `core-size`
+
+# linux
+src.packages.0.tools.0.systems.0.url      : `tool-url`
+src.packages.0.tools.0.systems.0.checksum : `tool-hash`
+src.packages.0.tools.0.systems.0.size     : `tool-size`
+
+# win64
+src.packages.0.tools.0.systems.1.url      : `tool-url`
+src.packages.0.tools.0.systems.1.checksum : `tool-hash`
+src.packages.0.tools.0.systems.1.size     : `tool-size`
+
+# win32
+src.packages.0.tools.0.systems.2.url      : `tool-url`
+src.packages.0.tools.0.systems.2.checksum : `tool-hash`
+src.packages.0.tools.0.systems.2.size     : `tool-size`
