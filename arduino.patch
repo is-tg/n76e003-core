@@ -1,0 +1,32 @@
+diff --git a/src/SDCCmain.c b/src/SDCCmain.c
+index 8bfa454..0699ad6 100644
+--- a/src/SDCCmain.c
++++ b/src/SDCCmain.c
+@@ -22,6 +22,7 @@
+    what you give them.   Help stamp out software-hoarding!
+ -------------------------------------------------------------------------*/
+ 
++#include "SDCCglobl.h"
+ #ifdef _WIN32
+ #include <io.h>
+ #include <fcntl.h>
+@@ -776,7 +777,8 @@ processFile (char *s)
+ 
+   /* if the extension is type rel_ext
+      additional object file will be passed to the linker */
+-  if (STRCASECMP (extp, port->linker.rel_ext) == 0)
++  if (STRCASECMP (extp, port->linker.rel_ext) == 0
++      || STRCASECMP (extp, ".o") == 0)  /* arduino: rel files with .o extension */
+     {
+       dbuf_destroy (&ext);
+       dbuf_destroy (&path);
+@@ -786,7 +788,8 @@ processFile (char *s)
+     }
+ 
+   /* if .lib or .LIB */
+-  if (STRCASECMP (extp, ".lib") == 0)
++  if (STRCASECMP (extp, ".lib") == 0
++      || STRCASECMP (extp, ".a") == 0)  /* arduino: lib files with .a extension */
+     {
+       dbuf_destroy (&ext);
+       dbuf_destroy (&path);
