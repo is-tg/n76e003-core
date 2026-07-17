@@ -7,13 +7,15 @@ __sfr __at(0x90) P1;
 __sfr __at(0xA0) P2;
 __sfr __at(0xB0) P3;
 
-/* Port 0 Output Mode Control */
-__sfr __at(0xB1) P0M1;
-__sfr __at(0xB2) P0M2;
-
-/* Port 1 Output Mode Control */
-__sfr __at(0xB3) P1M1;
-__sfr __at(0xB4) P1M2;
+/* P0 Bits */
+__sbit __at(0x80) P00;
+__sbit __at(0x81) P01;
+__sbit __at(0x82) P02;
+__sbit __at(0x83) P03;
+__sbit __at(0x84) P04;
+__sbit __at(0x85) P05;
+__sbit __at(0x86) P06;
+__sbit __at(0x87) P07;
 
 /* P1 Bits */
 __sbit __at(0x90) P10;
@@ -25,8 +27,28 @@ __sbit __at(0x95) P15;
 __sbit __at(0x96) P16;
 __sbit __at(0x97) P17;
 
+/* P2 Bits */
+__sbit __at(0xA0) P20;
+
+/* P3 Bits */
+__sbit __at(0xB0) P30;
+
+/* Port 0 Output Mode Control */
+__sfr __at(0xB1) P0M1;
+__sfr __at(0xB2) P0M2;
+
+/* Port 1 Output Mode Control */
+__sfr __at(0xB3) P1M1;
+__sfr __at(0xB4) P1M2;
+
 /* Timer Control */
 __sfr __at(0x88) TCON;
+
+/* TCON Bits */
+__sbit __at(0x8C) TR0;
+__sbit __at(0x8D) TF0;
+__sbit __at(0x8E) TR1;
+__sbit __at(0x8F) TF1;
 
 /* Timer Mode */
 __sfr __at(0x89) TMOD;
@@ -41,12 +63,6 @@ __sfr __at(0x8D) TH1;
 
 /* Clock Control */
 __sfr __at(0x8E) CKCON;
-
-/* TCON Bits */
-__sbit __at(0x8C) TR0;
-__sbit __at(0x8D) TF0;
-__sbit __at(0x8E) TR1;
-__sbit __at(0x8F) TF1;
 
 /* Interrupt Enable */
 __sfr __at(0xA8) IE;
