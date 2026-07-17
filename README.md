@@ -50,23 +50,11 @@ yay!
 
 ## BUILT WITH
 
-- [SDCC - patched to allow *.o and *.a file extensions](https://sdcc.sourceforge.net/)
+- [SDCC](https://sdcc.sourceforge.net/) - [patched](arduino.patch)
 - [nvtispflash](https://github.com/frank-zago/nvtispflash)
 
-## PROGRESS
+## RESOURCES
 
-Refer the [Arduino API](https://docs.arduino.cc/learn/programming/reference/)
-
-#### Digital I/O
-- [x] pinMode
-- [x] digitalRead
-- [x] digitalWrite
-#### Time
-- [x] delay
-
-## CONTRIBUTE
-
-resources:
 
 - [N76E003 Datasheet](https://www.nuvoton.com/export/resource-files/DS_N76E003_EN_Rev1.09.pdf)
 - [The Official Arduino AVR core for reference](https://github.com/arduino/ArduinoCore-avr/tree/master)
