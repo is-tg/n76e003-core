@@ -7,7 +7,7 @@ version=0.1.0
 bin.path={runtime.tools.bundle.path}/bin
 device.path={runtime.tools.bundle.path}/device
 
-## Compiler
+## Tools
 compiler.sdcc.cmd=sdcc
 compiler.sdcc.cmd.windows=sdcc.exe
 compiler.ar.cmd=sdar
@@ -17,17 +17,21 @@ compiler.objcopy.cmd.windows=sdobjcopy.exe
 tools.nvtispflash.cmd=nvtispflash
 tools.nvtispflash.cmd.windows=nvtispflash.exe
 
+## Memory layout
+build.code_size=18432
+compiler.sdcc.common.flags=-mmcs51 --model-{build.model} --iram-size 256 --xram-size 768 --code-size {build.code_size}
+
 ## Global compiler flags
 ## Patch: SDCC accepts .o as .rel and .a as .lib
-compiler.sdcc.flags=-mmcs51 --model-{build.model} --iram-size 256 --xram-size 768 --code-size 18432 -DF_CPU={build.f_cpu} -I"{device.path}/include/mcs51" -I"{device.path}/include" --disable-warning 283 --disable-warning 126
+compiler.sdcc.flags={compiler.sdcc.common.flags} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_ARCH_{build.arch} -DARDUINO_{build.board} -I"{device.path}/include/mcs51" -I"{device.path}/include" {build.extra_flags}
 
 ## Linker flags (reused in combine)
-compiler.sdcc.ld.flags=-mmcs51 --model-{build.model} --iram-size 256 --xram-size 768 --code-size 18432 -L"{device.path}/lib/{build.model}" --out-fmt-ihx
+compiler.sdcc.ld.flags={compiler.sdcc.common.flags} -L"{device.path}/lib/{build.model}" --out-fmt-ihx {build.extra_flags}
 
 ## Compile C
 recipe.c.o.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -c "{source_file}" -o "{object_file}"
 
-## Compile sketch (.ino → .cpp, forced as C)
+## Compile sketch forced as C
 recipe.cpp.o.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -c "{source_file}" -o "{object_file}"
 
 ## Preprocess (for library detection)
@@ -38,20 +42,21 @@ recipe.preproc.macros.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.fl
 recipe.ar.pattern="{bin.path}/{compiler.ar.cmd}" -rc "{archive_file_path}" "{object_file}"
 
 ## Link
-## Explicitly pass main.c.o so SDCC sees main() and generates startup code
+## main.c.o is passed first, resolves _main before the archive is scanned
+## also lives inside core.a but sdcc is only looking for undefined symbols
 recipe.c.combine.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.ld.flags} "{build.path}/core/main.c.o" {object_files} "{archive_file_path}" -o "{build.path}/{build.project_name}.ihx"
 
 ## Convert ihx → bin
 compiler.objcopy.bin.flags=-I ihex -O binary
 recipe.objcopy.bin.pattern="{bin.path}/{compiler.objcopy.cmd}" {compiler.objcopy.bin.flags} "{build.path}/{build.project_name}.ihx" "{build.path}/{build.project_name}.bin"
 
-## Size (optional, reads from SDCC .mem file)
-recipe.size.pattern=
-recipe.size.regex=
+## From .mem file
+## idata is shown in ASCII grid :(
+recipe.size.pattern="cat" "{build.path}/{build.project_name}.mem"
+recipe.size.regex=ROM/EPROM/FLASH\s+\S+\s+\S+\s+(\d+)
 recipe.size.regex.data=
-recipe.size.regex.eeprom=
 
 ## Upload
-tools.nvtispflash.upload.params.verbose=
+tools.nvtispflash.upload.params.verbose=--read-serial
 tools.nvtispflash.upload.params.quiet=
 tools.nvtispflash.upload.pattern="{bin.path}/{tools.nvtispflash.cmd}" --serial-device "{serial.port}" --aprom-file "{build.path}/{build.project_name}.bin"

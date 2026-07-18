@@ -1,7 +1,7 @@
 # set ft=markdown for okish TS syntax highlighting
 src : package_nuvoton_index.json
 
-version : 0.4.5
+version : 0.4.6
 download-url : https://github.com/is-tg/n76e003-core/releases/download
 
 core : n76e003-core.tar.gz

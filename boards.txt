@@ -8,3 +8,6 @@ n76e003.build.arch=mcs51
 
 n76e003.upload.tool=nvtispflash
 n76e003.upload.protocol=serial
+n76e003.upload.maximum_size=18432
+n76e003.upload.maximum_data_size=768
+n76e003.build.extra_flags=
