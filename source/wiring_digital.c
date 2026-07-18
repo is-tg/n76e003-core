@@ -10,20 +10,20 @@ void pinMode(uint8_t pin, uint8_t mode)
 {
     uint8_t bitmask = (1u << (pin & 7));
 
-    uint8_t port_mode;
+    uint8_t pin_mode;
     switch (mode)
     {
     case INPUT:
-        port_mode = MODE_INPUT;
+        pin_mode = MODE_INPUT;
         break;
     case OUTPUT:
-        port_mode = MODE_PUSHPULL;
+        pin_mode = MODE_PUSHPULL;
         break;
     case INPUT_PULLUP:
-        port_mode = MODE_QUASI;
+        pin_mode = MODE_QUASI;
         break;
     case OUTPUT_OPENDRAIN:
-        port_mode = MODE_OPENDRAIN;
+        pin_mode = MODE_OPENDRAIN;
         break;
     default:
         return;
@@ -31,13 +31,13 @@ void pinMode(uint8_t pin, uint8_t mode)
 
     if (pin < 8)
     {
-        (port_mode & 0b10) ? (P0M1 |= bitmask) : (P0M1 &= ~bitmask);
-        (port_mode & 0b01) ? (P0M2 |= bitmask) : (P0M2 &= ~bitmask);
+        (pin_mode & 0b10) ? (P0M1 |= bitmask) : (P0M1 &= ~bitmask);
+        (pin_mode & 0b01) ? (P0M2 |= bitmask) : (P0M2 &= ~bitmask);
     }
     else if (pin < 16)
     {
-        (port_mode & 0b10) ? (P1M1 |= bitmask) : (P1M1 &= ~bitmask);
-        (port_mode & 0b01) ? (P1M2 |= bitmask) : (P1M2 &= ~bitmask);
+        (pin_mode & 0b10) ? (P1M1 |= bitmask) : (P1M1 &= ~bitmask);
+        (pin_mode & 0b01) ? (P1M2 |= bitmask) : (P1M2 &= ~bitmask);
     }
 }
 

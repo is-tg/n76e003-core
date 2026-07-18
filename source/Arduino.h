@@ -20,6 +20,9 @@ enum
 /* Active low LED */
 #define LED_BUILTIN 10
 
+/* Timer0 overflow interrupt */
+void timer0_isr(void) __interrupt(1);
+
 void setup(void);
 void loop(void);
 
@@ -27,6 +30,7 @@ void pinMode(uint8_t pin, uint8_t mode);
 void digitalWrite(uint8_t pin, uint8_t val);
 int digitalRead(uint8_t pin);
 
+uint32_t micros(void);
 void delay(uint32_t ms);
 
 #endif
