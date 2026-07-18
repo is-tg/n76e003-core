@@ -12,15 +12,15 @@
                 {
                     "name": "Nuvoton N76E003 Core",
                     "architecture": "mcs51",
-                    "version": "0.4.5",
+                    "version": "0.4.6",
                     "category": "Contributed",
                     "help": {
                         "online": "https://github.com/is-tg/n76e003-core"
                     },
-                    "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.5/n76e003-core.tar.xz",
+                    "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.6/n76e003-core.tar.gz",
                     "archiveFileName": "n76e003-core.tar.xz",
-                    "checksum": "SHA-256:883508321f8e23cf57c7f5fa53927073b86e2e8309d486ab476a99c1058e70cc",
-                    "size": 3676,
+                    "checksum": "SHA-256:b8e6821aba197707e991e2338e62d99178472c841f3dee95832fc5625541ce3a",
+                    "size": 2917,
                     "boards": [
                         {
                             "name": "Nuvoton N76E003"
@@ -42,24 +42,24 @@
                     "systems": [
                         {
                             "host": "x86_64-pc-linux-gnu",
-                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.5/tools-bundle.tar.xz",
+                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.6/toolchain-bundle.tar.gz",
                             "archiveFileName": "tools-bundle.tar.xz",
-                            "checksum": "SHA-256:ae70070d330680d7825c947d5356ab1c0e6bad66d8e0f800d8ab39fd9f023992",
-                            "size": 8386496
+                            "checksum": "SHA-256:7352a9f94c3ff278c13259ece8856f8fb3e107f30e89ecc46cedf25a2c3d63d9",
+                            "size": 6688221
                         },
                         {
                             "host": "x86_64-mingw32",
-                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.5/tools-bundle.tar.xz",
+                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.6/toolchain-bundle.tar.gz",
                             "archiveFileName": "tools-bundle.tar.xz",
-                            "checksum": "SHA-256:ae70070d330680d7825c947d5356ab1c0e6bad66d8e0f800d8ab39fd9f023992",
-                            "size": 8386496
+                            "checksum": "SHA-256:7352a9f94c3ff278c13259ece8856f8fb3e107f30e89ecc46cedf25a2c3d63d9",
+                            "size": 6688221
                         },
                         {
                             "host": "i686-mingw32",
-                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.5/tools-bundle.tar.xz",
+                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.6/toolchain-bundle.tar.gz",
                             "archiveFileName": "tools-bundle.tar.xz",
-                            "checksum": "SHA-256:ae70070d330680d7825c947d5356ab1c0e6bad66d8e0f800d8ab39fd9f023992",
-                            "size": 8386496
+                            "checksum": "SHA-256:7352a9f94c3ff278c13259ece8856f8fb3e107f30e89ecc46cedf25a2c3d63d9",
+                            "size": 6688221
                         }
                     ]
                 }
