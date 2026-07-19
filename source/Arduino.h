@@ -27,7 +27,7 @@ void setup(void);
 void loop(void);
 
 void pinMode(uint8_t pin, uint8_t mode);
-void digitalWrite(uint8_t pin, uint8_t val);
+void digitalWrite(uint8_t pin, uint8_t value);
 int digitalRead(uint8_t pin);
 
 uint32_t micros(void);
