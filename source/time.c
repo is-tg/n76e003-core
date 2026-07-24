@@ -3,12 +3,12 @@
 
 static volatile uint32_t timer0_overflow_count = 0;
 
-void timer0_isr(void) __interrupt(1)
+void timer0_isr(void) __interrupt(INT_T0_OVERFLOW)
 {
     timer0_overflow_count++;
 }
 
-void init(void)
+void timer0_init(void)
 {
     /* Set 16-bit timer mode for Timer0 */
     TMOD = (TMOD & 0xF0) | 0x01;

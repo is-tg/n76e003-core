@@ -268,7 +268,6 @@ __sbit __at(0x89) IE0; // TCON^1;
 __sbit __at(0x88) IT0; // TCON^0;
 
 /*  P0  */
-
 __sbit __at(0x87) P07;   // P0^7;
 __sbit __at(0x87) RXD;   // P0^7;
 __sbit __at(0x86) P06;   // P0^6;
@@ -283,5 +282,28 @@ __sbit __at(0x81) P01;   // P0^1;
 __sbit __at(0x81) MISO;  // P0^1;
 __sbit __at(0x80) P00;   // P0^0;
 __sbit __at(0x80) MOSI;  // P0^0;
+
+/* Interrupts. */
+enum
+{
+        INT_EXT0 = 0,
+        INT_T0_OVERFLOW = 1,
+        INT_EXT1 = 2,
+        INT_T1_OVERFLOW = 3,
+        INT_UART0 = 4,
+        INT_T2_EVENT = 5,
+        INT_I2C = 6,
+        INT_PIN = 7,
+        INT_BROWN_OUT = 8,
+        INT_SPI = 9,
+        INT_WDT = 10,
+        INT_ADC = 11,
+        INT_CAPTURE = 12,
+        INT_PWM = 13,
+        INT_FAULT_BREAK = 14,
+        INT_UART1 = 15,
+        INT_T3_OVERFLOW = 16,
+        INT_WAKE_UP = 17,
+};
 
 #endif
