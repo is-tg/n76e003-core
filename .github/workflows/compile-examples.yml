@@ -1,0 +1,23 @@
+name: Compile Examples
+
+on: [push, pull_request]
+
+jobs:
+  compile:
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: arduino/compile-sketches@v1
+        with:
+          fqbn: nuvoton:mcs51:n76e003
+          platforms: |
+            - source-path: ./
+              name: nuvoton:mcs51
+          sketch-paths: |
+            - examples
