@@ -5,23 +5,20 @@
 
 enum
 {
-    LOW,
-    HIGH
+        LOW,
+        HIGH
 };
 
 enum
 {
-    INPUT,            /* Input-only          */
-    OUTPUT,           /* Push-pull           */
-    INPUT_PULLUP,     /* Quasi-bidirectional */
-    OUTPUT_OPENDRAIN, /* Open-drain          */
+        INPUT,            /* Input-only          */
+        OUTPUT,           /* Push-pull           */
+        INPUT_PULLUP,     /* Quasi-bidirectional */
+        OUTPUT_OPENDRAIN, /* Open-drain          */
 };
 
 /* Active low LED */
 #define LED_BUILTIN 10
-
-/* Timer0 overflow interrupt */
-void timer0_isr(void) __interrupt(1);
 
 void setup(void);
 void loop(void);
@@ -32,5 +29,11 @@ int digitalRead(uint8_t pin);
 
 uint32_t micros(void);
 void delay(uint32_t ms);
+
+extern volatile uint8_t serialAvailable;
+extern volatile uint8_t serialAvailableForWrite;
+void serialBegin(uint32_t baud, uint8_t smod);
+uint8_t serialRead(void);
+void serialWrite(uint8_t buf);
 
 #endif

@@ -306,4 +306,7 @@ enum
         INT_WAKE_UP = 17,
 };
 
+void timer0_isr(void) __interrupt(INT_T0_OVERFLOW);
+void uart0_isr(void) __interrupt(INT_UART0);
+
 #endif

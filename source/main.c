@@ -1,14 +1,18 @@
 #include <Arduino.h>
+#include <N76E003.h>
 
-void init(void);
+void timer0_init(void);
 
 int main(void)
 {
-    init();
-    setup();
+        /* Enable all interrupt */
+        EA = HIGH;
+        timer0_init();
 
-    while (1)
-    {
-        loop();
-    }
+        setup();
+
+        while (1)
+        {
+                loop();
+        }
 }
