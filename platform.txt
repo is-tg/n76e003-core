@@ -15,7 +15,7 @@ compiler.ar.cmd.windows=sdar.exe
 compiler.objcopy.cmd=sdobjcopy
 compiler.objcopy.cmd.windows=sdobjcopy.exe
 tools.nvtispflash.cmd=nvtispflash
-tools.nvtispflash.cmd.windows=nvtispflash.exe
+tools.nvtispflash.cmd.windows=NuvoISP.exe
 
 ## Memory layout
 build.code_size=18432
@@ -57,6 +57,6 @@ recipe.size.regex=ROM/EPROM/FLASH\s+\S+\s+\S+\s+(\d+)
 recipe.size.regex.data=
 
 ## Upload
-tools.nvtispflash.upload.params.verbose=--read-serial
-tools.nvtispflash.upload.params.quiet=
-tools.nvtispflash.upload.pattern="{bin.path}/{tools.nvtispflash.cmd}" --serial-device "{serial.port}" --aprom-file "{build.path}/{build.project_name}.bin"
+upload.port=
+tools.nvtispflash.upload.pattern="{bin.path}/{tools.nvtispflash.cmd}" --serial-device "{serial.port}" --aprom-file "{build.path}/{build.project_name}.bin" --read-serial
+tools.nvtispflash.upload.pattern.windows="{bin.path}/{tools.nvtispflash.cmd}" -interface UART "{serial.port}" -aprom "{build.path}/{build.project_name}.bin" -erase -run
