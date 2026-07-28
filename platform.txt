@@ -31,8 +31,8 @@ recipe.c.o.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {inclu
 recipe.cpp.o.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -c "{source_file}" -o "{object_file}"
 
 ## Preprocess (for library detection)
-recipe.preproc.includes.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -E "{source_file}"
-recipe.preproc.macros.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -E "{source_file}"
+# recipe.preproc.includes.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -E "{source_file}"
+# recipe.preproc.macros.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -E "{source_file}"
 
 ## Archive core into core.a
 recipe.ar.pattern="{bin.path}/{compiler.ar.cmd}" -rc "{archive_file_path}" "{object_file}"
