@@ -1,4 +1,3 @@
-### Made possible through sleepless nights
 ## Metadata
 name=Nuvoton N76E003
 version=0.1.0
@@ -9,11 +8,8 @@ device.path={runtime.tools.bundle.path}/device
 
 ## Tools
 compiler.sdcc.cmd=sdcc
-compiler.sdcc.cmd.windows=sdcc.exe
 compiler.ar.cmd=sdar
-compiler.ar.cmd.windows=sdar.exe
 compiler.objcopy.cmd=sdobjcopy
-compiler.objcopy.cmd.windows=sdobjcopy.exe
 tools.nvtispflash.cmd=nvtispflash
 tools.nvtispflash.cmd.windows=NuvoISP.exe
 
@@ -57,6 +53,5 @@ recipe.size.regex=ROM/EPROM/FLASH\s+\S+\s+\S+\s+(\d+)
 recipe.size.regex.data=
 
 ## Upload
-upload.port=
 tools.nvtispflash.upload.pattern="{bin.path}/{tools.nvtispflash.cmd}" --serial-device "{serial.port}" --aprom-file "{build.path}/{build.project_name}.bin" --read-serial
 tools.nvtispflash.upload.pattern.windows="{bin.path}/{tools.nvtispflash.cmd}" -interface UART "{serial.port}" -aprom "{build.path}/{build.project_name}.bin" -erase -run
