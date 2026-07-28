@@ -13,9 +13,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Download Toolchain Bundle
+        run: |
+          wget https://github.com/is-tg/n76e003-core/releases/latest/download/n76e003-core.tar.gz -O toolchain.tar.gz
+          mkdir -p /opt/toolchain-bundle
+          tar -xzf toolchain.tar.gz -C /opt/toolchain-bundle --strip-components=1
+
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: nuvoton:mcs51:n76e003
+          # Override the empty bundle path with the downloaded location
+          cli-compile-properties: |
+            - runtime.tools.bundle.path=/opt/toolchain-bundle
           platforms: |
             - source-path: ./
               name: nuvoton:mcs51
