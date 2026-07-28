@@ -1,3 +1,5 @@
+[![Compile Examples](https://github.com/is-tg/n76e003-core/actions/workflows/compile-examples.yml/badge.svg)](https://github.com/is-tg/n76e003-core/actions/workflows/compile-examples.yml)
+
 ## USAGE
 
 #### IDE steps
