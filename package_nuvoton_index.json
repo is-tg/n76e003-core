@@ -19,8 +19,8 @@
                     },
                     "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.7/n76e003-core.tar.gz",
                     "archiveFileName": "n76e003-core.tar.xz",
-                    "checksum": "SHA-256:c3f264784ae16022ea836dd76f876e5721fb4d28c56ae509dcd3161ec61b6519",
-                    "size": 5009,
+                    "checksum": "SHA-256:e31ecd01860621c7fc08fb455c9c09f5e1b9663360961c0054249f4eb8215468",
+                    "size": 5005,
                     "boards": [
                         {
                             "name": "Nuvoton N76E003"
