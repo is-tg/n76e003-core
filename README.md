@@ -1,5 +1,10 @@
 [![Compile Examples](https://github.com/is-tg/n76e003-core/actions/workflows/compile-examples.yml/badge.svg)](https://github.com/is-tg/n76e003-core/actions/workflows/compile-examples.yml)
 
+## BROKEN :(
+
+### [this commit](https://github.com/arduino/arduino-cli/commit/65c01ecca31d1ba8fe708a9063268cb2c6126996) introduces GCC-specific dep file generation
+#### this project now only works well with v1.4.1
+
 ## USAGE
 
 #### IDE steps
