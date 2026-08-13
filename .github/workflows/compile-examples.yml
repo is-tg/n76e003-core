@@ -15,7 +15,6 @@ jobs:
 
       - uses: arduino/compile-sketches@v1
         with:
-          cli-version: 1.4.1
           fqbn: nuvoton:mcs51:n76e003
           platforms: |
             - name: nuvoton:mcs51
