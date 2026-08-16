@@ -1,0 +1,9 @@
+---------------------   THIRDPARTY tools:  ------------------------
+
+nvtispflash:
+  - URL and source code: https://github.com/frank-zago/nvtispflash
+  - License: Licensed under the GPL v2 or later license.
+
+NuvoISP:
+  - URL and source code: https://github.com/OpenNuvoton/ISPTool
+  - License: Licensed under the MIT License.
