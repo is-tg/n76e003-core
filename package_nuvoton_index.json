@@ -1,7 +1,7 @@
 {
     "packages": [
         {
-            "name": "istg",
+            "name": "is-tg",
             "maintainer": "is-tg",
             "websiteURL": "https://github.com/is-tg/n76e003-core",
             "email": "devgoattg@gmail.com",
@@ -28,7 +28,7 @@
                     ],
                     "toolsDependencies": [
                         {
-                            "packager": "istg",
+                            "packager": "is-tg",
                             "name": "bundle",
                             "version": "1.0.0"
                         }
