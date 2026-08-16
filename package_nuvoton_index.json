@@ -1,7 +1,7 @@
 {
     "packages": [
         {
-            "name": "nuvoton",
+            "name": "istg",
             "maintainer": "is-tg",
             "websiteURL": "https://github.com/is-tg/n76e003-core",
             "email": "devgoattg@gmail.com",
@@ -12,15 +12,15 @@
                 {
                     "name": "Nuvoton N76E003 Core",
                     "architecture": "mcs51",
-                    "version": "0.4.7",
+                    "version": "0.4.9",
                     "category": "Contributed",
                     "help": {
                         "online": "https://github.com/is-tg/n76e003-core"
                     },
-                    "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.7/n76e003-core.tar.gz",
-                    "archiveFileName": "n76e003-core.tar.xz",
-                    "checksum": "SHA-256:e31ecd01860621c7fc08fb455c9c09f5e1b9663360961c0054249f4eb8215468",
-                    "size": 5005,
+                    "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.9/n76e003-core.tar.gz",
+                    "archiveFileName": "n76e003-core.tar.gz",
+                    "checksum": "SHA-256:e41995a8140b59b913d3cb8f4d96ad65d71d14a02ad97359b5f27e1ffe228f7c",
+                    "size": 4614,
                     "boards": [
                         {
                             "name": "Nuvoton N76E003"
@@ -28,9 +28,9 @@
                     ],
                     "toolsDependencies": [
                         {
-                            "packager": "nuvoton",
+                            "packager": "istg",
                             "name": "bundle",
-                            "version": "2.2.0"
+                            "version": "1.0.0"
                         }
                     ]
                 }
@@ -38,14 +38,21 @@
             "tools": [
                 {
                     "name": "bundle",
-                    "version": "2.2.0",
+                    "version": "1.0.0",
                     "systems": [
                         {
-                            "host": "x86_64-pc-linux-gnu",
-                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.7/toolchain-bundle.tar.gz",
-                            "archiveFileName": "tools-bundle.tar.xz",
-                            "checksum": "SHA-256:428d71b01a1b0b8db46565edfe6f5319770b19006b3cb30128b9085c55a33172",
-                            "size": 11414282
+                            "host": "x86_64-linux-gnu",
+                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.9/linux-bundle.tar.gz",
+                            "archiveFileName": "linux-bundle.tar.gz",
+                            "checksum": "SHA-256:9d98bfb39b155557fc858cd5d6d8e43c85e79c0530ffe00733e14482b6e4e183",
+                            "size": 1820078
+                        },
+                        {
+                            "host": "x86_64-mingw32",
+                            "url": "https://github.com/is-tg/n76e003-core/releases/download/v0.4.9/windows-bundle.tar.gz",
+                            "archiveFileName": "windows-bundle.tar.gz",
+                            "checksum": "SHA-256:7671e91188b55374c28321ec0b2d152ae7fcd361ad6c79ba52dec94c1b76f69e",
+                            "size": 6432801
                         }
                     ]
                 }
