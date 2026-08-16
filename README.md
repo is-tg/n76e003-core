@@ -1,11 +1,8 @@
 [![Compile Examples](https://github.com/is-tg/n76e003-core/actions/workflows/compile-examples.yml/badge.svg)](https://github.com/is-tg/n76e003-core/actions/workflows/compile-examples.yml)
 
-## BROKEN :(
+## Usage
 
-### [this commit](https://github.com/arduino/arduino-cli/commit/65c01ecca31d1ba8fe708a9063268cb2c6126996) introduces GCC-specific dep file generation
-#### this project now only works well with v1.4.1
-
-## USAGE
+prerequisite: SDCC must be installed (try the [installer](https://sourceforge.net/projects/sdcc/files/sdcc-win64/4.6.0/) on windows)
 
 #### IDE steps
 
@@ -42,27 +39,26 @@ board_manager:
 update local cache and install the core
 ```
 arduino-cli core update-index
-arduino-cli core install nuvoton:mcs51
+arduino-cli core install istg:mcs51
 ```
 write a sketch then compile and upload by running
 
 replace `sketch.ino` and port `/dev/ttyUSB0` accordingly
 ```
-arduino-cli compile --fqbn nuvoton:mcs51:n76e003 sketch.ino
-arduino-cli upload -p /dev/ttyUSB0 --fqbn nuvoton:mcs51:n76e003 sketch.ino
+arduino-cli compile --fqbn istg:mcs51:n76e003 sketch.ino
+arduino-cli upload -p /dev/ttyUSB0 --fqbn istg:mcs51:n76e003 sketch.ino
 ```
 NOTE: you may need to trigger RESET to begin the flash process
 
 yay!
 
-## BUILT WITH
+## Bundles
 
-- [SDCC](https://sdcc.sourceforge.net/) - [patched](arduino.patch)
-- [nvtispflash](https://github.com/frank-zago/nvtispflash)
+- [A go wrapper](kite/main.go)
+- On linux, [nvtispflash](https://github.com/frank-zago/nvtispflash) - requires libserialport.so.0
+- On widows, [NuvoISP](https://github.com/OpenNuvoton/ISPTool)
 
-## RESOURCES
-
+## Resources
 
 - [N76E003 Datasheet](https://www.nuvoton.com/export/resource-files/DS_N76E003_EN_Rev1.09.pdf)
-- [The Official Arduino AVR core for reference](https://github.com/arduino/ArduinoCore-avr/tree/master)
-- [Hardware independent layer of the Arduino cores defining the official API](https://github.com/arduino/ArduinoCore-API.git)
+- [Arduino Docs](https://docs.arduino.cc/arduino-cli/platform-specification/)

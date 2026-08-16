@@ -1,57 +1,35 @@
-## Metadata
-name=Nuvoton N76E003
-version=0.1.0
-
-## Tool paths
-bin.path={runtime.tools.bundle.path}/bin
-device.path={runtime.tools.bundle.path}/device
-
 ## Tools
-compiler.sdcc.cmd=sdcc
-compiler.ar.cmd=sdar
-compiler.objcopy.cmd=sdobjcopy
-tools.nvtispflash.cmd=nvtispflash
-tools.nvtispflash.cmd.windows=NuvoISP.exe
+kite.cmd={runtime.tools.bundle.path}/kite
+sdcc.cmd=sdcc
+ar.cmd=sdar
+objcopy.cmd=sdobjcopy
+upload.cmd={runtime.tools.bundle.path}/nvtispflash
+upload.cmd.windows={runtime.tools.bundle.path}/NuvoISP.exe
 
-## Memory layout
-build.code_size=18432
-compiler.sdcc.common.flags=-mmcs51 --model-{build.model} --iram-size 256 --xram-size 768 --code-size {build.code_size}
+## Flags
+compiler.flags=-mmcs51 --model-small --iram-size 256 --xram-size 768 --code-size 18432
 
-## Global compiler flags
-## Patch: SDCC accepts .o as .rel and .a as .lib
-compiler.sdcc.flags={compiler.sdcc.common.flags} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_ARCH_{build.arch} -DARDUINO_{build.board} -I"{device.path}/include/mcs51" -I"{device.path}/include" {build.extra_flags}
+## Preprocess (for ctags)
+recipe.preproc.macros={kite.cmd} pp {includes} "{source_file}" "{preprocessed_file_path}"
 
-## Linker flags (reused in combine)
-compiler.sdcc.ld.flags={compiler.sdcc.common.flags} -L"{device.path}/lib/{build.model}" --out-fmt-ihx {build.extra_flags}
+## For compiling core
+recipe.c.o.pattern={sdcc.cmd} {compiler.flags} {includes} -c "{source_file}" -o "{object_file}"
 
-## Compile C
-recipe.c.o.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -c "{source_file}" -o "{object_file}"
+## For compiling sketch
+recipe.cpp.o.pattern={sdcc.cmd} {compiler.flags} {includes} -x c -c "{source_file}" -o "{object_file}"
 
-## Compile sketch forced as C
-recipe.cpp.o.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -c "{source_file}" -o "{object_file}"
+## Build core archive
+recipe.ar.pattern={ar.cmd} -rcs "{archive_file_path}" "{object_file}"
 
-## Preprocess (for library detection)
-recipe.preproc.includes.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -E "{source_file}"
-recipe.preproc.macros.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.flags} {includes} -x c -E "{source_file}"
-
-## Archive core into core.a
-recipe.ar.pattern="{bin.path}/{compiler.ar.cmd}" -rc "{archive_file_path}" "{object_file}"
-
-## Link
-## main.c.o is passed first, resolves _main before the archive is scanned
-## also lives inside core.a but sdcc is only looking for undefined symbols
-recipe.c.combine.pattern="{bin.path}/{compiler.sdcc.cmd}" {compiler.sdcc.ld.flags} "{build.path}/core/main.c.o" {object_files} "{archive_file_path}" -o "{build.path}/{build.project_name}.ihx"
+## Link (object_files is sketch + libraries)
+ihexfile="{build.path}/{build.project_name}.ihx"
+recipe.c.combine.pattern={kite.cmd} ld {object_files} "{archive_file_path}" {ihexfile}
 
 ## Convert ihx → bin
-compiler.objcopy.bin.flags=-I ihex -O binary
-recipe.objcopy.bin.pattern="{bin.path}/{compiler.objcopy.cmd}" {compiler.objcopy.bin.flags} "{build.path}/{build.project_name}.ihx" "{build.path}/{build.project_name}.bin"
-
-## From .mem file
-## idata is shown in ASCII grid :(
-recipe.size.pattern="cat" "{build.path}/{build.project_name}.mem"
-recipe.size.regex=ROM/EPROM/FLASH\s+\S+\s+\S+\s+(\d+)
-recipe.size.regex.data=
+objcopy.flags=-I ihex -O binary
+apromfile="{build.path}/{build.project_name}.bin"
+recipe.objcopy.bin.pattern={objcopy.cmd} {objcopy.flags} {ihexfile} {apromfile}
 
 ## Upload
-tools.nvtispflash.upload.pattern="{bin.path}/{tools.nvtispflash.cmd}" --serial-device "{serial.port}" --aprom-file "{build.path}/{build.project_name}.bin"
-tools.nvtispflash.upload.pattern.windows="{bin.path}/{tools.nvtispflash.cmd}" -interface UART "{serial.port}" -aprom "{build.path}/{build.project_name}.bin" -erase -run
+upload.pattern={upload.cmd} --serial-device "{serial.port}" --aprom-file {apromfile}
+upload.pattern.windows={upload.cmd} -interface UART "{serial.port}" -aprom "{build.path}/{build.project_name}.bin" -erase -run
