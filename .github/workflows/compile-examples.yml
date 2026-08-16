@@ -22,6 +22,6 @@ jobs:
           fqbn: istg:mcs51:n76e003
           platforms: |
             - name: istg:mcs51
-              source-url: https://raw.githubusercontent.com/is-tg/n76e003-core/main/package_istg_index.json
+              source-url: https://raw.githubusercontent.com/is-tg/n76e003-core/main/package_nuvoton_index.json
           sketch-paths: |
             - examples
